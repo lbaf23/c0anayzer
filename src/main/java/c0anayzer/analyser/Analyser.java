@@ -261,13 +261,24 @@ public final class Analyser {
      * @return
      */
     private int getThisRankOffset(int rank){
-        int num=0;
-        for(SymbolEntry s:symbolTable){
-            if(s.getSymbolRank()<=rank && rank!=0){
-                num++;
+        if(rank == 0){
+            int num=0;
+            for(SymbolEntry s: symbolTable){
+                if(s.getSymbolRank() == 0){
+                    num ++;
+                }
             }
+            return num;
         }
-        return num;
+        else {
+            int num = 0;
+            for (SymbolEntry s : symbolTable) {
+                if (s.getSymbolRank() <= rank && rank != 0) {
+                    num++;
+                }
+            }
+            return num;
+        }
     }
 
     /**
