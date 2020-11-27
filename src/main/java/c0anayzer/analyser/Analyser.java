@@ -612,6 +612,7 @@ public final class Analyser {
                 type=  analyseIdentExpression(f, rank, ident, true);
                 f.addInstruction(new Instruction(Operation.load_64));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 /*
                 int o;
@@ -636,6 +637,9 @@ public final class Analyser {
 
                  */
 >>>>>>> parent of 3e90496... global
+=======
+
+>>>>>>> parent of 1598dee... Global
             }
         }
         else if(check(TokenType.Uint)){ // UINT_LITERAL
@@ -1020,13 +1024,17 @@ public final class Analyser {
         }
         // 查找变量表
         else {
-            sy = useSymbol(ident.getValueString(), rank, peek().getStartPos());
+            sy = useSymbol(ident.getValueString(), 0, peek().getStartPos());
             if(sy.isConst() && !allowConst){
                 throw new AnalyzeError(ErrorCode.ChangeConst, peek().getStartPos());
             }
             type = sy.getType();
+<<<<<<< HEAD
             o = getOffset(ident.getValueString(), rank, peek().getStartPos());
 <<<<<<< HEAD
+=======
+            o = sy.getStackOffset();
+>>>>>>> parent of 1598dee... Global
 
 =======
 >>>>>>> parent of 3e90496... global
