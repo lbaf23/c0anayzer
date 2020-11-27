@@ -277,12 +277,10 @@ public final class Analyser {
                 if (s.getSymbolRank() <= rank && rank != 0) {
                     num++;
                 }
-=======
         int num=0;
         for(SymbolEntry s:symbolTable){
             if(s.getSymbolRank()<=rank && s.getSymbolRank() != 0){
                 num++;
->>>>>>> parent of 3e90496... global
             }
             return num;
         }
