@@ -611,6 +611,7 @@ public final class Analyser {
                 f.addInstruction(new Instruction(Operation.load_64));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 /*
                 int o;
@@ -635,6 +636,9 @@ public final class Analyser {
 
                  */
 >>>>>>> parent of 3e90496... global
+=======
+
+>>>>>>> parent of 1598dee... Global
 =======
 
 >>>>>>> parent of 1598dee... Global
@@ -1028,8 +1032,12 @@ public final class Analyser {
             }
             type = sy.getType();
 <<<<<<< HEAD
+<<<<<<< HEAD
             o = getOffset(ident.getValueString(), rank, peek().getStartPos());
 <<<<<<< HEAD
+=======
+            o = sy.getStackOffset();
+>>>>>>> parent of 1598dee... Global
 =======
             o = sy.getStackOffset();
 >>>>>>> parent of 1598dee... Global
