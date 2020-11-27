@@ -27,12 +27,7 @@ public class WriteFile {
                 content.write(getByteValue(midCode.globalSymbol.get(i).length(), 4));
                 content.write(getByteValue(midCode.globalSymbol.get(i)));
             }
-/*            for(int i=0; i<midCode.fnList.size(); i++){
-                content.write(getByteValue(1, 1));
-                content.write(getByteValue(midCode.fnList.get(i).fnName.length(), 4));
-                content.write(getByteValue(midCode.fnList.get(i).fnName));
-            }
-*/
+
             content.write(getByteValue(midCode.fnList.size(), 4));
 
             for(FnInstruct f: midCode.fnList){

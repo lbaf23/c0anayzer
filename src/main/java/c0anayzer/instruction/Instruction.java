@@ -24,7 +24,7 @@ public class Instruction {
         INSTRUCT.put("and", 0x2b);INSTRUCT.put("or", 0x2c);
         INSTRUCT.put("xor", 0x2d);INSTRUCT.put("not", 0x2e);
         INSTRUCT.put("cmp_i", 0x30);
-        INSTRUCT.put("cmp_f", 0x31);INSTRUCT.put("cmp_u", 0x32);
+        INSTRUCT.put("cmp_f", 0x32);INSTRUCT.put("cmp_u", 0x31);
         INSTRUCT.put("neg_i", 0x34);INSTRUCT.put("neg_f", 0x35);
         INSTRUCT.put("itof", 0x36);INSTRUCT.put("ftoi", 0x37);
         INSTRUCT.put("shrl", 0x38);INSTRUCT.put("set_lt", 0x39);
