@@ -85,18 +85,16 @@ public class Tokenizer {
                 hasP = true;
             str.append(it.nextChar());
         }
-        try {
-            if(isDouble) {
-                if(!hasP){
-                    throw new TokenizeError(ErrorCode.InvalidIdentifier, begin);
-                }
-                return new Token(TokenType.DoubleVar, Double.parseDouble(str.toString()), begin, it.currentPos());
+
+
+        if(isDouble) {
+            if(!hasP){
+                throw new TokenizeError(ErrorCode.InvalidIdentifier, begin);
             }
-            else {
-                return new Token(TokenType.Uint, Long.parseLong(str.toString()), begin, it.currentPos());
-            }
-        } catch(NumberFormatException e){
-            throw new TokenizeError(ErrorCode.IntegerOverflow, begin);
+            return new Token(TokenType.DoubleVar, Double.parseDouble(str.toString()), begin, it.currentPos());
+        }
+        else {
+            return new Token(TokenType.Uint, Long.parseLong(str.toString()), begin, it.currentPos());
         }
     }
 
