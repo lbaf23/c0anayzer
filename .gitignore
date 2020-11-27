@@ -31,4 +31,4 @@ out
 build
 bin
 
-.idea
+.idea/*
