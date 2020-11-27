@@ -263,7 +263,7 @@ public final class Analyser {
     private int getThisRankOffset(int rank){
         int num=0;
         for(SymbolEntry s:symbolTable){
-            if(s.getSymbolRank()<=rank ){
+            if(s.getSymbolRank()<=rank && rank!=0){
                 num++;
             }
         }
@@ -416,36 +416,6 @@ public final class Analyser {
 
         expect(TokenType.SEMICOLON);
 
-      /*
-
-        expect(TokenType.CONST);
-        Token ident = expect(TokenType.Ident);
-        expect(TokenType.COLON);
-        Token ty = expectTyToken();
-
-        if(rank==0) {
-            midCode.addGlobalVar(ident.getValueString(), peek().getStartPos());
-        }
-        else {
-            f.notInFnParams(ident.getValueString(), peek().getStartPos());
-            f.addLoc();
-        }
-        int o = getThisRankOffset(rank);
-        f.addInstruction(new Instruction(Operation.loca, o, 4 ));
-        addSymbol(ident.getValueString(), ty.getValueString(), true, true, peek().getStartPos(), rank, o);
-
-        expect(TokenType.ASSIGN);
-        OperationList opList = new OperationList();
-        String type = analyseExpression(f, rank, opList);
-        while(!opList.isEmpty()){
-            String op = opList.popList();
-            addOperatorInstruction(f, op, type);
-        }
-
-        f.addInstruction(new Instruction(Operation.store_64));
-
-        expect(TokenType.SEMICOLON);
-        declareSymbol(ident.getValueString(), peek().getStartPos(), rank);*/
     }
 
     // if_stmt
