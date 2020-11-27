@@ -4,13 +4,25 @@
     <list default="true" id="ae6d94ec-58bc-4d76-9172-913e5e378558" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/c0anayzer/instruction/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/c0anayzer/instruction/Instruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/c0anayzer/midcode/WriteFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/c0anayzer/midcode/WriteFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -311,7 +323,7 @@
       <workItem from="1606290883689" duration="3758000" />
       <workItem from="1606393374351" duration="11441000" />
       <workItem from="1606438862706" duration="145000" />
-      <workItem from="1606439092131" duration="842000" />
+      <workItem from="1606439092131" duration="1070000" />
     </task>
     <servers />
   </component>
