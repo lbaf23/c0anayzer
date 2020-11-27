@@ -340,18 +340,22 @@ public final class Analyser {
         expect(TokenType.COLON);
         Token ty = expectTyToken();
 
+        int o;
         if(rank==0) {
             // 添加一个全局变量到全局符号表
             midCode.addGlobalVar(ident.getValueString(), peek().getStartPos());
             // 添加一个全局变量到全局变量表
             midCode.addGlobalVar(new GlobalVar(ident.getValueString(), false));
+
+            o = getThisRankOffset(rank);
         }
         else {
             if(rank == 1)
                 f.notInFnParams(ident.getValueString(), peek().getStartPos());
             f.addLoc();
+            o = f.getLocSlots() - 1;
         }
-        int o = getThisRankOffset(rank);
+
         // 添加符号表
         addSymbol(ident.getValueString(), ty.getValueString(), false, false, peek().getStartPos(), rank, o);
 
@@ -364,9 +368,6 @@ public final class Analyser {
             }
             else {
                 o = f.getNextLocOffset();
-
-                System.out.println(o);
-
                 f.addInstruction(new Instruction(Operation.loca, o, 4));
             }
 
@@ -393,17 +394,21 @@ public final class Analyser {
         Token ident = expect(TokenType.Ident);
         expect(TokenType.COLON);
         Token ty = expectTyToken();
+        int o;
         if(rank==0) {
             // 添加一个全局变量到全局符号表
             midCode.addGlobalVar(ident.getValueString(), peek().getStartPos());
             // 添加一个全局变量到全局变量表
             midCode.addGlobalVar(new GlobalVar(ident.getValueString(), true));
+
+            o = getThisRankOffset(rank);
         }
         else {
             f.notInFnParams(ident.getValueString(), peek().getStartPos());
             f.addLoc();
+            o = f.getLocSlots() - 1;
         }
-        int o = getThisRankOffset(rank);
+
         addSymbol(ident.getValueString(), ty.getValueString(), true, true, peek().getStartPos(), rank, o);
 
         expect(TokenType.ASSIGN);
@@ -920,9 +925,10 @@ public final class Analyser {
                 throw new AnalyzeError(ErrorCode.ChangeConst, peek().getStartPos());
             }
 
-            o = getVarThisRankOffset(sy);
+            // o = getVarThisRankOffset(sy);
 
             // o = getOffset(sy);
+            o = sy.getStackOffset();
             f.addInstruction(new Instruction(Operation.loca, o, 4));
             type = sy.getType();
         }
