@@ -19,6 +19,8 @@
 *.tar.gz
 *.rar
 
+.gradle
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -26,4 +28,7 @@ in.txt
 in2.txt
 navm-windows-amd64.exe
 out
+build
+bin
 
+.idea
