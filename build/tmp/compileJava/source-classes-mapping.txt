@@ -9,16 +9,17 @@ c0anayzer/error/TokenizeError.java
  c0anayzer.error.TokenizeError
 c0anayzer/midcode/FnParam.java
  c0anayzer.midcode.FnParam
-c0anayzer/error/ErrorCode.java
- c0anayzer.error.ErrorCode
+c0anayzer/util/Pos.java
+ c0anayzer.util.Pos
 c0anayzer/tokenizer/StringIter.java
  c0anayzer.tokenizer.StringIter
 c0anayzer/midcode/GlobalVar.java
  c0anayzer.midcode.GlobalVar
-c0anayzer/util/Pos.java
- c0anayzer.util.Pos
-c0anayzer/analyser/OperationList.java
- c0anayzer.analyser.OperationList
+c0anayzer/instruction/Instruction.java
+ c0anayzer.instruction.Instruction
+ c0anayzer.instruction.Instruction$1
+c0anayzer/midcode/MidCode.java
+ c0anayzer.midcode.MidCode
 c0anayzer/error/AnalyzeError.java
  c0anayzer.error.AnalyzeError
 c0anayzer/tokenizer/Tokenizer.java
@@ -27,17 +28,16 @@ c0anayzer/analyser/SymbolEntry.java
  c0anayzer.analyser.SymbolEntry
 c0anayzer/instruction/Operation.java
  c0anayzer.instruction.Operation
-c0anayzer/error/CompileError.java
- c0anayzer.error.CompileError
-c0anayzer/midcode/WriteFile.java
- c0anayzer.midcode.WriteFile
-c0anayzer/midcode/MidCode.java
- c0anayzer.midcode.MidCode
 c0anayzer/midcode/FnInstruct.java
  c0anayzer.midcode.FnInstruct
-c0anayzer/instruction/Instruction.java
- c0anayzer.instruction.Instruction
- c0anayzer.instruction.Instruction$1
+c0anayzer/analyser/OperationList.java
+ c0anayzer.analyser.OperationList
+c0anayzer/error/ErrorCode.java
+ c0anayzer.error.ErrorCode
+c0anayzer/midcode/WriteFile.java
+ c0anayzer.midcode.WriteFile
+c0anayzer/error/CompileError.java
+ c0anayzer.error.CompileError
 c0anayzer/analyser/Analyser.java
  c0anayzer.analyser.Analyser
 c0anayzer/App.java

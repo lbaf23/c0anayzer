@@ -463,12 +463,12 @@ public final class Analyser {
 
         int len3 = -1;
         int len1 = f.getInstructionsLength();
-        f.addInstruction(new Instruction(Operation.br));
+        f.addInstruction(new Instruction(Operation.br,0, 4));
 
         analyseBlockStatement(f, rank+1, breakList, continueList);
 
         int len2 = f.getInstructionsLength();
-        f.addInstruction(new Instruction(Operation.br));
+        f.addInstruction(new Instruction(Operation.br, 0, 4));
         // TODO
         f.setBrInstructionValue(len1, len2-len1);
 //        f.insertInstruction(new Instruction(Operation.br, len2-len1 + 1,4), len1);
@@ -504,7 +504,7 @@ public final class Analyser {
         f.addInstruction(new Instruction(Operation.br_true, 1, 4));
 
         int len1 = f.getInstructionsLength();
-        f.addInstruction(new Instruction(Operation.br));
+        f.addInstruction(new Instruction(Operation.br, 0 ,4));
         // 记录位置便于跳转
         ArrayList<Integer> breakList = new ArrayList<>();
         ArrayList<Integer> continueList = new ArrayList<>();
@@ -672,7 +672,7 @@ public final class Analyser {
                 throw new AnalyzeError(ErrorCode.InvalidIdentifier, peek().getStartPos());
             }
             breakList.add(f.getInstructionsLength());
-            f.addInstruction(new Instruction(Operation.br));
+            f.addInstruction(new Instruction(Operation.br, 0, 4));
 
             expect(TokenType.SEMICOLON);
         }
@@ -682,7 +682,7 @@ public final class Analyser {
                 throw new AnalyzeError(ErrorCode.InvalidIdentifier, peek().getStartPos());
             }
             continueList.add(f.getInstructionsLength());
-            f.addInstruction(new Instruction(Operation.br));
+            f.addInstruction(new Instruction(Operation.br, 0, 4));
             expect(TokenType.SEMICOLON);
         }
 

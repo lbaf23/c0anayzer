@@ -71,16 +71,20 @@ public class App {
         // analyze
         var analyzer = new Analyser(tokenizer);
 
+
+        MidCode m = analyzer.analyse();
+        //output.println(MidCode.getMidCode().toString());
+        WriteFile.writeO0File(m, outputFileName);
+
+        /*
         try {
-            MidCode m = analyzer.analyse();
-            //output.println(MidCode.getMidCode().toString());
-            WriteFile.writeO0File(m, outputFileName);
+
         } catch (Exception e) {
             // 遇到错误不输出，直接退出
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println(e);
             System.exit(0);
-        }
+        }*/
         // output.println(MidCode.getMidCode().toString());
     }
 
