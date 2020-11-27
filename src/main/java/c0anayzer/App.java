@@ -73,8 +73,8 @@ public class App {
 
 
         MidCode m = analyzer.analyse();
-        //output.println(MidCode.getMidCode().toString());
-        WriteFile.writeO0File(m, outputFileName);
+        output.println(MidCode.getMidCode().toString());
+        //WriteFile.writeO0File(m, outputFileName);
 
         /*
         try {

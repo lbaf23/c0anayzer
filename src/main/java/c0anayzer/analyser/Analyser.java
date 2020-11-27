@@ -438,7 +438,7 @@ public final class Analyser {
     private void analyseIfStatement(FnInstruct f, int rank, ArrayList<Integer> breakList, ArrayList<Integer> continueList) throws CompileError {
         expect(TokenType.IF);
         OperationList opList = new OperationList();
-        String ty = analyseExpression(f, rank, opList, false, breakList, continueList);
+        String ty = analyseExpression(f, rank, opList, true, breakList, continueList);
         while(!opList.isEmpty()){
             String op = opList.popList();
             addOperatorInstruction(f, op, ty);
@@ -478,7 +478,7 @@ public final class Analyser {
 
         int len0 = f.getInstructionsLength();
         f.addInstruction(new Instruction(Operation.br, 0, 4) );
-        String ty = analyseExpression(f, rank, opList, false, null, null);
+        String ty = analyseExpression(f, rank, opList, true, null, null);
         while(!opList.isEmpty()){
             String op = opList.popList();
             addOperatorInstruction(f, op, ty);
@@ -564,12 +564,13 @@ public final class Analyser {
                 type = analyseCallExpression(f, rank, opList, isAssignEpr, ident);
 
                 if(!type.equals("void") && !isAssignEpr){
+                    // TODO
                     f.addInstruction(new Instruction(Operation.popn, 1, 4));
                 }
 
             }
             else{
-                type=  analyseIdentExpression(f, rank, ident, true);
+                type = analyseIdentExpression(f, rank, ident, true);
                 f.addInstruction(new Instruction(Operation.load_64));
             }
         }
@@ -645,10 +646,6 @@ public final class Analyser {
      */
     private String analyseOperatorExpression(FnInstruct f, int rank, String ty, OperationList opList, boolean isAssignEpr) throws CompileError {
         Token o = next();
-
-        //System.out.print(o.getValueString());
-        //System.out.println(OperationList.cmpOp(opList.peek(), o.getValueString()));
-
         if(OperationList.cmpOp(opList.peek(), o.getValueString())){
             addOperatorInstruction(f, opList.popList(), ty);
             opList.addList(o.getValueString());
