@@ -85,7 +85,7 @@ public class App {
     }
 
     private static ArgumentParser buildArgparse() {
-        var builder = ArgumentParsers.newFor("C0Analyzer");
+        var builder = ArgumentParsers.newFor("c0analyzer");
         var parser = builder.build();
         //parser.addArgument("-t", "--tokenize").help("Tokenize the input").action(Arguments.storeTrue());
         //parser.addArgument("-l", "--analyse").help("Analyze the input").action(Arguments.storeTrue());
