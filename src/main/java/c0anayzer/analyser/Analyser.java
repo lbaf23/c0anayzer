@@ -568,13 +568,13 @@ public final class Analyser {
                 type = analyseAssignExpression(f, rank, opList, ident);
             }
             else if(check(TokenType.L_PARENT)){ // call_expr
-                type = analyseCallExpression(f, rank, opList, isAssignEpr, ident);
-
+                type = analyseCallExpression(f, rank, opList, true, ident);
+/*
                 if(!type.equals("void") && !isAssignEpr){
                     // TODO
                     f.addInstruction(new Instruction(Operation.popn, 1, 4));
                 }
-
+*/
             }
             else{
                 type = analyseIdentExpression(f, rank, ident, true);
