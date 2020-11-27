@@ -19,7 +19,7 @@ public class WriteFile {
                 else{
                     content.write(getByteValue(0, 1));
                 }
-                content.write(getByteValue(8, 8));
+                content.write(getByteValue(8, 4));
                 content.write(getByteValue(0, 8));
             }
             for(int i=midCode.getGlobalVarNum(); i<midCode.globalSymbol.size(); i++){

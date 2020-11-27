@@ -34,11 +34,11 @@ c0anayzer/analyser/OperationList.java
  c0anayzer.analyser.OperationList
 c0anayzer/error/ErrorCode.java
  c0anayzer.error.ErrorCode
-c0anayzer/midcode/WriteFile.java
- c0anayzer.midcode.WriteFile
-c0anayzer/error/CompileError.java
- c0anayzer.error.CompileError
 c0anayzer/analyser/Analyser.java
  c0anayzer.analyser.Analyser
+c0anayzer/error/CompileError.java
+ c0anayzer.error.CompileError
 c0anayzer/App.java
  c0anayzer.App
+c0anayzer/midcode/WriteFile.java
+ c0anayzer.midcode.WriteFile
