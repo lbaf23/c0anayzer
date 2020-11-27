@@ -29,8 +29,8 @@ c0anayzer/instruction/Operation.java
  c0anayzer.instruction.Operation
 c0anayzer/error/CompileError.java
  c0anayzer.error.CompileError
-c0anayzer/analyser/Analyser.java
- c0anayzer.analyser.Analyser
+c0anayzer/midcode/WriteFile.java
+ c0anayzer.midcode.WriteFile
 c0anayzer/midcode/MidCode.java
  c0anayzer.midcode.MidCode
 c0anayzer/midcode/FnInstruct.java
@@ -38,7 +38,7 @@ c0anayzer/midcode/FnInstruct.java
 c0anayzer/instruction/Instruction.java
  c0anayzer.instruction.Instruction
  c0anayzer.instruction.Instruction$1
-c0anayzer/midcode/WriteFile.java
- c0anayzer.midcode.WriteFile
+c0anayzer/analyser/Analyser.java
+ c0anayzer.analyser.Analyser
 c0anayzer/App.java
  c0anayzer.App

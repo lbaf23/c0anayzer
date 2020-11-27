@@ -250,7 +250,7 @@ public final class Analyser {
         int i=0;
         for(SymbolEntry s : symbolTable){
             if(s.getSymbolName().equals(sy.getSymbolName()) && s.getSymbolRank() == sy.getSymbolRank()){
-                return i;
+                return s.getStackOffset();
             }
         }
         return -1;
@@ -337,10 +337,10 @@ public final class Analyser {
         else {
             if(rank == 1)
                 f.notInFnParams(ident.getValueString(), peek().getStartPos());
-
             f.addLoc();
         }
         int o = getThisRankOffset(rank);
+        // 添加符号表
         addSymbol(ident.getValueString(), ty.getValueString(), false, false, peek().getStartPos(), rank, o);
 
         if(check(TokenType.ASSIGN)){
@@ -364,7 +364,6 @@ public final class Analyser {
 
             f.addInstruction(new Instruction(Operation.store_64));
 
-
             if(!type.equals(ty.getValueString())){
                 throw new AnalyzeError(ErrorCode.TypeMismatch, peek().getStartPos());
             }
@@ -372,9 +371,6 @@ public final class Analyser {
         }
 
         expect(TokenType.SEMICOLON);
-/*        else {
-            expect(TokenType.SEMICOLON);
-        }*/
     }
     // 'const' IDENT ':' ty '=' expr ';'
     private void analyseConstantDeclaration(FnInstruct f, int rank) throws CompileError {
@@ -393,7 +389,7 @@ public final class Analyser {
             f.addLoc();
         }
         int o = getThisRankOffset(rank);
-        addSymbol(ident.getValueString(), ty.getValueString(), false, true, peek().getStartPos(), rank, o);
+        addSymbol(ident.getValueString(), ty.getValueString(), true, true, peek().getStartPos(), rank, o);
 
         expect(TokenType.ASSIGN);
         if(rank==0){
