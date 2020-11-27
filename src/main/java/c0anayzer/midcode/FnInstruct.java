@@ -269,6 +269,8 @@ public class FnInstruct {
      * @return 是否有返回 true有 false没有
      */
     public boolean checkReturnRoutes(){
+        if(this.getReturnType().equals("void"))
+            return true;
         return dfs(0, new HashSet<Integer>());
     }
 
