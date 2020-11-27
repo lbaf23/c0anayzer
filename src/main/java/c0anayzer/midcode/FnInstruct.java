@@ -269,9 +269,15 @@ public class FnInstruct {
      * @return 是否有返回 true有 false没有
      */
     public boolean checkReturnRoutes(){
-        if(this.getReturnType().equals("void"))
+        if(this.getReturnType().equals("void")){
+            if(!this.fnBody.get(this.fnBody.size()-1).getOpt().equals(Operation.ret)){
+                addInstruction(new Instruction(Operation.ret));
+            }
             return true;
-        return dfs(0, new HashSet<Integer>());
+        }
+        else {
+            return dfs(0, new HashSet<Integer>());
+        }
     }
 
     private boolean dfs(int i, HashSet<Integer> routes){

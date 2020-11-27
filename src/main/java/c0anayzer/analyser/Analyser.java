@@ -505,7 +505,9 @@ public final class Analyser {
     }
     // return_stmt
     private void analyseReturnStatement(FnInstruct f, int rank) throws CompileError {
-        f.addInstruction(new Instruction(Operation.arga, 0, 4));
+        if(!f.getReturnType().equals("void"))
+            f.addInstruction(new Instruction(Operation.arga, 0, 4));
+
         expect(TokenType.RETURN);
         String ty = "void";
         if(check(TokenType.SEMICOLON)){
