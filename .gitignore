@@ -31,4 +31,5 @@ out
 build
 bin
 
+.idea/workspace.xml
 .idea/*

@@ -261,7 +261,6 @@ public final class Analyser {
      * @return
      */
     private int getThisRankOffset(int rank){
-<<<<<<< HEAD
         if(rank == 0){
             int num=0;
             for(SymbolEntry s: symbolTable){
@@ -277,10 +276,6 @@ public final class Analyser {
                 if (s.getSymbolRank() <= rank && rank != 0) {
                     num++;
                 }
-        int num=0;
-        for(SymbolEntry s:symbolTable){
-            if(s.getSymbolRank()<=rank && s.getSymbolRank() != 0){
-                num++;
             }
             return num;
         }
@@ -454,10 +449,8 @@ public final class Analyser {
 
         int len2 = f.getInstructionsLength();
         f.addInstruction(new Instruction(Operation.br, 0, 4));
-        // TODO
+
         f.setBrInstructionValue(len1, len2-len1);
-//        f.insertInstruction(new Instruction(Operation.br, len2-len1 + 1,4), len1);
-//        len2 ++;
 
         if(check(TokenType.ELSE)){
             next();
@@ -470,9 +463,8 @@ public final class Analyser {
         }
 
         int lenE = f.getInstructionsLength();
-        // TODO
+
         f.setBrInstructionValue(len2, lenE-len2-1);
-        //f.insertInstruction(new Instruction(Operation.br, lenE - len2 ,4), len2);
     }
     // while_stmt
     private void analyseWhileStatement(FnInstruct f, int rank) throws CompileError {
@@ -497,16 +489,13 @@ public final class Analyser {
 
         int len2 = f.getInstructionsLength();
         f.setBrInstructionValue(len1, len2-len1);
-        //f.insertInstruction(new Instruction(Operation.br, len2-len1+1, 4), len1);
         f.addInstruction(new Instruction(Operation.br, len0-len2, 4) );
 
         for(Integer b: breakList) {
             f.setBrInstructionValue(b, len2 - b);
-            //b.setX(len2 - f.getInstructionOffset(b));
         }
         for(Integer c: continueList) {
             f.setBrInstructionValue(c, len0 - c);
-            //f.insertInstruction(new Instruction(Operation.br, c-len2, 4), c);
         }
     }
     // return_stmt
@@ -564,39 +553,7 @@ public final class Analyser {
             Token ident = next();
 
             if(check(TokenType.ASSIGN)) { // assign_expr -> l_expr '=' expr
-
                 type = analyseAssignExpression(f, rank, opList, ident);
-                /*
-                int o;
-                String pType;
-
-                if((o=f.getParamOffset(ident.getValueString()) ) >= 0){
-                    pType = f.getOffsetParam(o).getType();
-                    if(f.haveRet())
-                        o++;
-                    f.addInstruction(new Instruction(Operation.arga, o, 4));
-                }
-                else {
-                    SymbolEntry sy = useSymbol(ident.getValueString(), rank, peek().getStartPos());
-                    pType = sy.getType();
-                    o = getOffset(ident.getValueString(), rank, peek().getStartPos());
-                    if(sy.getSymbolRank()==0){
-                        f.addInstruction(new Instruction(Operation.globa, o, 4));
-                    }
-                    else {
-                        f.addInstruction(new Instruction(Operation.loca, o, 4));
-                    }
-                }
-
-
-                String ty = analyseAssignExpression(f, rank, opList);
-                if(!pType.equals(ty)){
-                    throw new AnalyzeError(ErrorCode.TypeMismatch, peek().getStartPos());
-                }
-
-                f.addInstruction(new Instruction(Operation.store_64));
-
-                type = "void";*/
             }
             else if(check(TokenType.L_PARENT)){ // call_expr
                 type = analyseCallExpression(f, rank, opList, isAssignEpr, ident);
@@ -609,39 +566,6 @@ public final class Analyser {
             else{
                 type=  analyseIdentExpression(f, rank, ident, true);
                 f.addInstruction(new Instruction(Operation.load_64));
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                /*
-                int o;
-                if((o=f.getParamOffset(ident.getValueString()) ) >= 0){
-                    type = f.getOffsetParam(o).getType();
-                    if(f.haveRet())
-                        o++;
-                    f.addInstruction(new Instruction(Operation.arga, o, 4));
-                }
-                else {
-                    SymbolEntry sy = useSymbol(ident.getValueString(), rank, peek().getStartPos());
-                    type = sy.getType();
-                    o = getOffset(ident.getValueString(), rank, peek().getStartPos());
-                    if(sy.getSymbolRank()==0){
-                        f.addInstruction(new Instruction(Operation.globa, o, 4));
-                    }
-                    else {
-                        f.addInstruction(new Instruction(Operation.loca, o, 4));
-                    }
-                }
-                f.addInstruction(new Instruction(Operation.load_64));
-
-                 */
->>>>>>> parent of 3e90496... global
-=======
-
->>>>>>> parent of 1598dee... Global
-=======
-
->>>>>>> parent of 1598dee... Global
             }
         }
         else if(check(TokenType.Uint)){ // UINT_LITERAL
@@ -650,9 +574,6 @@ public final class Analyser {
         else if(check(TokenType.DoubleVar)) { // DOUBLE_LITERAL
             type = analyseDoubleLiteralExpression(f, rank, isAssignEpr);
         }
-        /*else if(check(TokenType.StringVar)) { // STRING_LITERAL
-            analyseStringLiteralExpression();
-        }*/
         else if(check(TokenType.CharVar)) { // CHAR_LITERAL
             type = analyseCharLiteralExpression(f, rank, isAssignEpr);
         }
@@ -699,11 +620,6 @@ public final class Analyser {
             String op = opList.popList();
             addOperatorInstruction(f, op, type);
         }
-/*
-        if(!isAssignEpr){
-            f.addInstruction(new Instruction(Operation.popn, 1, 4));
-        }
-*/
         return type;
     }
 
@@ -861,7 +777,6 @@ public final class Analyser {
     private String analyseAssignExpression(FnInstruct f, int rank, OperationList opList, Token ident) throws CompileError {
         String type = analyseIdentExpression(f,rank, ident, false);
         expect(TokenType.ASSIGN);
-        // TODO CHEKC
         String ty = analyseExpression(f, rank, opList, true, null ,null);
         f.addInstruction(new Instruction(Operation.store_64));
         if(!ty.equals(type))
@@ -933,15 +848,10 @@ public final class Analyser {
                     }
                     break;
             }
-            //int o = midCode.getSymbolAddress(ident.getValueString());
 
             expect(TokenType.R_PARENT);
 
             f.addInstruction(new Instruction(Operation.callname, o, 4));
-            /*if(!ty.equals("void") && !isAssignEpr){
-                f.addInstruction(new Instruction(Operation.popn, 1, 4));
-            }*/
-
             return ty;
         }
 
@@ -965,9 +875,7 @@ public final class Analyser {
         fn.checkParams(peek().getStartPos(), paramsTypeList);
 
         f.addInstruction(new Instruction(Operation.call, midCode.getFnAddress(fn.getFnName()), 4 ));
-        if(fn.getReturnSlots() > 0){
-            //f.addInstruction(new Instruction(Operation.popn, 1, 4 ));
-        }
+
         return fn .getReturnType();
     }
     private String analyseUintLiteralExpression(FnInstruct f, int rank, boolean isAssignEpr) throws CompileError {
@@ -1031,19 +939,9 @@ public final class Analyser {
                 throw new AnalyzeError(ErrorCode.ChangeConst, peek().getStartPos());
             }
             type = sy.getType();
-<<<<<<< HEAD
-<<<<<<< HEAD
-            o = getOffset(ident.getValueString(), rank, peek().getStartPos());
-<<<<<<< HEAD
-=======
+            // o = getOffset(ident.getValueString(), rank, peek().getStartPos());
             o = sy.getStackOffset();
->>>>>>> parent of 1598dee... Global
-=======
-            o = sy.getStackOffset();
->>>>>>> parent of 1598dee... Global
 
-=======
->>>>>>> parent of 3e90496... global
             f.addInstruction(new Instruction(Operation.globa, o, 4));
         }
         //f.addInstruction(new Instruction(Operation.load_64));
@@ -1083,7 +981,7 @@ public final class Analyser {
         Token t = next();
         if(t.getTokenType().equals(TokenType.INT) ||
                 t.getTokenType().equals(TokenType.DOUBLE) ||
-                        t.getTokenType().equals(TokenType.VOID)){
+                t.getTokenType().equals(TokenType.VOID)){
             return t;
         }
         throw new ExpectedTokenError(List.of(TokenType.Ident, TokenType.Uint, TokenType.L_PARENT), next());
