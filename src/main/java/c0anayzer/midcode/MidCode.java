@@ -92,19 +92,6 @@ public class MidCode {
         globalSymbol.add(globalVarNum++, name);
     }
 
-    public GlobalVar getGlobalVar(String s){
-        for(GlobalVar g: gdList){
-            if(g.getVarName().equals(s)){
-                return g;
-            }
-        }
-        return null;
-    }
-
-    public int getGlobalVarOffset(GlobalVar g){
-        return gdList.indexOf(g);
-    }
-
     /**
      * 添加一个函数块
      * @param f 函数块

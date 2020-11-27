@@ -261,6 +261,7 @@ public final class Analyser {
      * @return
      */
     private int getThisRankOffset(int rank){
+<<<<<<< HEAD
         if(rank == 0){
             int num=0;
             for(SymbolEntry s: symbolTable){
@@ -276,6 +277,12 @@ public final class Analyser {
                 if (s.getSymbolRank() <= rank && rank != 0) {
                     num++;
                 }
+=======
+        int num=0;
+        for(SymbolEntry s:symbolTable){
+            if(s.getSymbolRank()<=rank && s.getSymbolRank() != 0){
+                num++;
+>>>>>>> parent of 3e90496... global
             }
             return num;
         }
@@ -561,6 +568,37 @@ public final class Analyser {
             if(check(TokenType.ASSIGN)) { // assign_expr -> l_expr '=' expr
 
                 type = analyseAssignExpression(f, rank, opList, ident);
+                /*
+                int o;
+                String pType;
+
+                if((o=f.getParamOffset(ident.getValueString()) ) >= 0){
+                    pType = f.getOffsetParam(o).getType();
+                    if(f.haveRet())
+                        o++;
+                    f.addInstruction(new Instruction(Operation.arga, o, 4));
+                }
+                else {
+                    SymbolEntry sy = useSymbol(ident.getValueString(), rank, peek().getStartPos());
+                    pType = sy.getType();
+                    o = getOffset(ident.getValueString(), rank, peek().getStartPos());
+                    if(sy.getSymbolRank()==0){
+                        f.addInstruction(new Instruction(Operation.globa, o, 4));
+                    }
+                    else {
+                        f.addInstruction(new Instruction(Operation.loca, o, 4));
+                    }
+                }
+
+
+                String ty = analyseAssignExpression(f, rank, opList);
+                if(!pType.equals(ty)){
+                    throw new AnalyzeError(ErrorCode.TypeMismatch, peek().getStartPos());
+                }
+
+                f.addInstruction(new Instruction(Operation.store_64));
+
+                type = "void";*/
             }
             else if(check(TokenType.L_PARENT)){ // call_expr
                 type = analyseCallExpression(f, rank, opList, isAssignEpr, ident);
@@ -573,6 +611,31 @@ public final class Analyser {
             else{
                 type=  analyseIdentExpression(f, rank, ident, true);
                 f.addInstruction(new Instruction(Operation.load_64));
+<<<<<<< HEAD
+=======
+                /*
+                int o;
+                if((o=f.getParamOffset(ident.getValueString()) ) >= 0){
+                    type = f.getOffsetParam(o).getType();
+                    if(f.haveRet())
+                        o++;
+                    f.addInstruction(new Instruction(Operation.arga, o, 4));
+                }
+                else {
+                    SymbolEntry sy = useSymbol(ident.getValueString(), rank, peek().getStartPos());
+                    type = sy.getType();
+                    o = getOffset(ident.getValueString(), rank, peek().getStartPos());
+                    if(sy.getSymbolRank()==0){
+                        f.addInstruction(new Instruction(Operation.globa, o, 4));
+                    }
+                    else {
+                        f.addInstruction(new Instruction(Operation.loca, o, 4));
+                    }
+                }
+                f.addInstruction(new Instruction(Operation.load_64));
+
+                 */
+>>>>>>> parent of 3e90496... global
             }
         }
         else if(check(TokenType.Uint)){ // UINT_LITERAL
@@ -927,6 +990,7 @@ public final class Analyser {
         Token ident = expect(TokenType.Ident);
         return analyseIdentExpression(f, rank, ident, allowConst);
     }
+
     private String analyseIdentExpression(FnInstruct f, int rank, Token ident, boolean allowConst) throws CompileError {
         int o;
         String type;
@@ -962,9 +1026,13 @@ public final class Analyser {
             }
             type = sy.getType();
             o = getOffset(ident.getValueString(), rank, peek().getStartPos());
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 3e90496... global
             f.addInstruction(new Instruction(Operation.globa, o, 4));
         }
+        //f.addInstruction(new Instruction(Operation.load_64));
         return type;
     }
 
