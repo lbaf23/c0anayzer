@@ -573,7 +573,6 @@ public final class Analyser {
             else{
                 type=  analyseIdentExpression(f, rank, ident, true);
                 f.addInstruction(new Instruction(Operation.load_64));
-
             }
         }
         else if(check(TokenType.Uint)){ // UINT_LITERAL
@@ -957,12 +956,12 @@ public final class Analyser {
         }
         // 查找变量表
         else {
-            sy = useSymbol(ident.getValueString(), 0, peek().getStartPos());
+            sy = useSymbol(ident.getValueString(), rank, peek().getStartPos());
             if(sy.isConst() && !allowConst){
                 throw new AnalyzeError(ErrorCode.ChangeConst, peek().getStartPos());
             }
             type = sy.getType();
-            o = sy.getStackOffset();
+            o = getOffset(ident.getValueString(), rank, peek().getStartPos());
 
             f.addInstruction(new Instruction(Operation.globa, o, 4));
         }
