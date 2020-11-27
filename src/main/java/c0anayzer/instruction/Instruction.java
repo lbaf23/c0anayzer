@@ -257,10 +257,4 @@ public class Instruction {
                 return "nop";
         }
     }
-
-
-
-    public static void main(String[] args){
-        System.out.println(Double.doubleToLongBits(1.1010));
-    }
 }
