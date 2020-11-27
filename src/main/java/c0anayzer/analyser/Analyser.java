@@ -248,8 +248,10 @@ public final class Analyser {
      */
     private int getVarThisRankOffset(SymbolEntry sy){
         for(SymbolEntry s : symbolTable){
-            if(s.getSymbolName().equals(sy.getSymbolName()) && s.getSymbolRank() == sy.getSymbolRank()){
+            if(s.getSymbolName().equals(sy.getSymbolName()) &&
+                    s.getSymbolRank() == sy.getSymbolRank() ){
                 return s.getStackOffset();
+
             }
         }
         return -1;
@@ -273,7 +275,7 @@ public final class Analyser {
         else {
             int num = 0;
             for (SymbolEntry s : symbolTable) {
-                if (s.getSymbolRank() <= rank && rank != 0) {
+                if (s.getSymbolRank() <= rank && s.getSymbolRank()!=0) {
                     num++;
                 }
             }
@@ -362,6 +364,9 @@ public final class Analyser {
             }
             else {
                 o = f.getNextLocOffset();
+
+                System.out.println(o);
+
                 f.addInstruction(new Instruction(Operation.loca, o, 4));
             }
 
@@ -651,7 +656,6 @@ public final class Analyser {
         else{
             opList.addList(o.getValueString());
         }
-        // TODO check
         String type = analyseExpression(f, rank, opList, isAssignEpr, null, null);
         if(!ty.equals(type))
             throw new AnalyzeError(ErrorCode.TypeMismatch, peek().getStartPos());
@@ -904,12 +908,12 @@ public final class Analyser {
         Token ident = expect(TokenType.Ident);
         return analyseIdentExpression(f, rank, ident, allowConst);
     }
-
     private String analyseIdentExpression(FnInstruct f, int rank, Token ident, boolean allowConst) throws CompileError {
         int o;
         String type;
 
         // 按照rank由高到低查找局部变量表
+        // TODO
         SymbolEntry sy;
         if ((sy = findBSymbol(ident.getValueString(), rank))!=null) {
 
@@ -918,6 +922,8 @@ public final class Analyser {
             }
 
             o = getVarThisRankOffset(sy);
+
+            // o = getOffset(sy);
             f.addInstruction(new Instruction(Operation.loca, o, 4));
             type = sy.getType();
         }
