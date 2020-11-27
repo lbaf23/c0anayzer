@@ -247,7 +247,6 @@ public final class Analyser {
      * @return
      */
     private int getVarThisRankOffset(SymbolEntry sy){
-        int i=0;
         for(SymbolEntry s : symbolTable){
             if(s.getSymbolName().equals(sy.getSymbolName()) && s.getSymbolRank() == sy.getSymbolRank()){
                 return s.getStackOffset();
@@ -264,7 +263,7 @@ public final class Analyser {
     private int getThisRankOffset(int rank){
         int num=0;
         for(SymbolEntry s:symbolTable){
-            if(s.getSymbolRank()==rank){
+            if(s.getSymbolRank()<=rank && s.getSymbolRank() != 0){
                 num++;
             }
         }

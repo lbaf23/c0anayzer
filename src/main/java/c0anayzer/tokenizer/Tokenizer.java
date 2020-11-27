@@ -75,7 +75,15 @@ public class Tokenizer {
         boolean hasP = true;
         while (!it.isEOF() &&
                 (Character.isDigit(it.peekChar()) || it.peekChar()=='.' || it.peekChar()=='e' || it.peekChar()=='E' ) ) {
-            if(it.peekChar() == '.'){
+            char c = it.nextChar();
+
+            if(c == 'E' || c == 'e'){
+                if(it.peekChar() == '-' || it.peekChar() == '+'){
+                    str.append(c);
+                    c = it.nextChar();
+                }
+            }
+            else if(c == '.'){
                 if(isDouble)
                     throw new TokenizeError(ErrorCode.InvalidIdentifier, begin);
                 isDouble = true;
@@ -83,7 +91,8 @@ public class Tokenizer {
             }
             else
                 hasP = true;
-            str.append(it.nextChar());
+
+            str.append(c);
         }
 
 
